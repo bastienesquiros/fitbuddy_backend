@@ -1,42 +1,44 @@
 {
-    "name": "create-express-with-typescript",
-    "version": "1.1.1",
-    "description": "Create Express app is a tamplate which is use to Create a express app templete api",
-    "main": "app.js",
-    "bin": {
-        "create-express": "./bin/createExpress.js"
-    },
-    "private": "true",
-    "scripts": {
-        "start": "npx tsc && nodemon dist/app.js",
-        "build": "npx tsc",
-        "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/app.js\" ",
-        "test": "jest --watchAll --detectOpenHandles --verbose"
-    },
-    "keywords": [
-        "create-express-app",
-        "express-app-template",
-        "create-express-server",
-        "express-server",
-        "express with typescript",
-        "create-express-with-typescript",
-        "Typescript express Server",
-        "express server",
-        "configure express server"
-    ],
-    "author": "Aadarsh Singh",
-    "license": "ISC",
-    "dependencies": {
-        "bcrypt": "^5.1.0",
-        "cors": "^2.8.5",
-        "dotenv": "^16.0.3",
-        "express": "^4.18.2"
-    },
-    "devDependencies": {
-        "@types/express": "^4.17.14",
-        "@types/node": "^18.11.9",
-        "concurrently": "^7.5.0",
-        "nodemon": "^2.0.20",
-        "typescript": "^4.8.4"
-    }
+  "name": "create-express-with-typescript",
+  "version": "1.1.1",
+  "description": "Create Express app is a tamplate which is use to Create a express app templete api",
+  "main": "app.js",
+  "bin": {
+    "create-express": "./bin/createExpress.js"
+  },
+  "private": "true",
+  "scripts": {
+    "start": "npx tsc && nodemon dist/app.js",
+    "build": "npx tsc",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/app.js\" "
+  },
+  "keywords": [
+    "create-express-app",
+    "express-app-template",
+    "create-express-server",
+    "express-server",
+    "express with typescript",
+    "create-express-with-typescript",
+    "Typescript express Server",
+    "express server",
+    "configure express server"
+  ],
+  "author": "Aadarsh Singh",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.0",
+    "uid2": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/express": "^4.17.14",
+    "@types/node": "^18.11.9",
+    "concurrently": "^7.5.0",
+    "nodemon": "^2.0.20",
+    "typescript": "^4.8.4"
+  }
 }
