@@ -19,21 +19,7 @@ router.post('/signin', (req: Request, res: Response) => {
       if (data && bcrypt.compareSync(req.body.password, data.password)) {
         res.json({
           result: true,
-          firstName: data.firstName,
-          lastName: data.firstName,
-          pseudo: data.pseudo,
-          avatar: data.avatar,
-          birthday: data.birthday,
-          gender: data.firstName,
-          bio: data.bio,
-          email: data.email,
-          password: data.password,
           token: data.token,
-          inscriptionDate: data.inscriptionDate,
-          bookmarks: data.bookmarks,
-          following: data.following,
-          myEvents: data.myEvents,
-          userSports: data.myEvents,
         });
       } else {
         res.json({ result: false, error: 'User not found or wrong password' });
