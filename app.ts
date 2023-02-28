@@ -4,7 +4,7 @@ import express from 'express';
 require('./models/connection');
 
 var indexRouter = require('./routes/index');
-var userRouter = require('./routes/user');
+var userRouter = require('./routes/users');
 
 const app: Express = express();
 const PORT: Number = 3000;
