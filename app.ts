@@ -9,6 +9,7 @@ const PORT: Number = 3000;
 
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/users');
+var eventRouter = require('./routes/events');
 
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.use('/', indexRouter);
 app.use('/users', userRouter);
+app.use('/events', eventRouter);
 
 let Server = app.listen(PORT, () => {
   console.log('Port is running on the ' + PORT);

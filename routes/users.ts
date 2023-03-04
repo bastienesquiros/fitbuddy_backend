@@ -26,28 +26,26 @@ router.post('/signin', (req: Request, res: Response) => {
 });
 
 //Route to Sign Up
-
 router.post('/signup', (req: Request, res: Response) => {
-  console.log(req.body);
+  // console.log(req.body);
   if (
     !checkBody(req.body, [
-      'pseudo',
       'firstName',
       'lastName',
-      'password',
+      'pseudo',
       'birthday',
       'gender',
-      'email',
       'bio',
-      'sport',
+      'email',
+      'password',
+      'inscriptionDate',
+      'sports',
     ])
   ) {
     res.json({ result: false, error: 'Missing or empty fields' });
     return;
   }
-
   // Check if the user has not already been registered
-
   User.findOne({ email: req.body.email }).then((data: IUser | null) => {
     if (data === null) {
       const hash = bcrypt.hashSync(req.body.password, 10);
@@ -59,14 +57,13 @@ router.post('/signup', (req: Request, res: Response) => {
         gender: req.body.gender,
         bio: req.body.bio,
         email: req.body.email,
-        inscriptionDate: req.body.inscriptionDate,
         password: hash,
         token: uid2(32),
-        sport: req.body.sport,
+        inscriptionDate: req.body.inscriptionDate,
+        sports: req.body.sports,
       });
-
       newUser.save().then(() => {
-        console.log('User saved!');
+        // console.log('User saved!');
       });
       res.json({ result: true });
     } else {
