@@ -47,25 +47,25 @@
 // }
 
 export interface IUser {
-  name: string;
+  // name: string;
   email: string;
   firstName: string;
   lastName: string;
   pseudo: string;
-  avatar: string;
+  // avatar: string;
   birthday: Date;
   gender: string;
   bio: string;
   password: string;
   token: string;
   inscriptionDate: Date;
-  bookmarks: string;
-  following: string;
-  myEvents: string;
-  userSports: IUserSports[];
+  // bookmarks: string;
+  // following: string;
+  // myEvents: string;
+  sport: [string];
 }
 
-export interface IUserSports {
-  sport: string;
-  level: string;
-}
+// export interface IUserSports {
+//   sport: string;
+//   // level: string;
+// }
