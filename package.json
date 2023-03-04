@@ -26,18 +26,19 @@
   "author": "Aadarsh Singh",
   "license": "ISC",
   "dependencies": {
+    "@types/uid2": "^0.0.0",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.20.2",
+    "concurrently": "^7.5.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.17.17",
     "mongoose": "^7.0.0",
-    "path": "^0.12.7",
-    "uid2": "^1.0.0",
-    "concurrently": "^7.5.0",
     "nodemon": "^2.0.20",
+    "path": "^0.12.7",
     "punycode": "2.3.0",
-    "typescript": "^4.8.4"
+    "typescript": "^4.8.4",
+    "uid2": "^1.0.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",

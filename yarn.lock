@@ -93,6 +93,11 @@
     "@types/mime" "*"
     "@types/node" "*"
 
+"@types/uid2@^0.0.0":
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/@types/uid2/-/uid2-0.0.0.tgz#d650ce54123c1280535f3759d94b37d1de48c56e"
+  integrity sha512-ZozX4JtkwJM+Vs3WO8O75DfKuqWx22binIwKCExO7Mu9kz/4bpEGBd2zk4M7rMSs+i20SgUI5ezYru4C0PZZqg==
+
 "@types/webidl-conversions@*":
   version "7.0.0"
   resolved "https://registry.npmjs.org/@types/webidl-conversions/-/webidl-conversions-7.0.0.tgz"

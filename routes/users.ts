@@ -14,7 +14,6 @@ router.post('/signin', (req: Request, res: Response) => {
       .status(400)
       .json({ result: false, error: 'Missing or empty fields' });
   }
-
   User.findOne({ email: req.body.email }).then((data: IUser | null) => {
     if (data && bcrypt.compareSync(req.body.password, data.password)) {
       res.json({
@@ -29,147 +28,48 @@ router.post('/signin', (req: Request, res: Response) => {
 //Route to Sign Up
 
 router.post('/signup', (req: Request, res: Response) => {
-  console.log(req.body)
+  console.log(req.body);
   if (
     !checkBody(req.body, [
       'pseudo',
-
       'firstName',
-
       'lastName',
-
       'password',
-
       'birthday',
-
       'gender',
-
       'email',
-
       'bio',
-
-      'sport'
-
-      // 'inscriptionDate',
+      'sport',
     ])
   ) {
     res.json({ result: false, error: 'Missing or empty fields' });
-
     return;
   }
-
-  // console.log(req.body);
 
   // Check if the user has not already been registered
 
   User.findOne({ email: req.body.email }).then((data: IUser | null) => {
     if (data === null) {
       const hash = bcrypt.hashSync(req.body.password, 10);
-
       const newUser = new User({
         firstName: req.body.firstName,
-
         lastName: req.body.lastName,
-
         pseudo: req.body.pseudo,
-
-        // avatar,
-
         birthday: req.body.birthday,
-
         gender: req.body.gender,
-
         bio: req.body.bio,
-
         email: req.body.email,
-
         inscriptionDate: req.body.inscriptionDate,
-
         password: hash,
-
         token: uid2(32),
-
         sport: req.body.sport,
-
-        // level,
       });
-
-      // const {
-
-      //   firstName,
-
-      //   lastName,
-
-      //   pseudo,
-
-      //   // avatar,
-
-      //   birthday,
-
-      //   gender,
-
-      //   bio,
-
-      //   email,
-
-      //   inscriptionDate,
-
-      //   password,
-
-      //   // sport,
-
-      //   // level,
-
-      // } = req.body;
-
-      // User.create({
-
-      //   firstName,
-
-      //   lastName,
-
-      //   pseudo,
-
-      //   // avatar,
-
-      //   // password,
-
-      //   birthday,
-
-      //   gender,
-
-      //   bio,
-
-      //   email,
-
-      //   inscriptionDate,
-
-      //   password: hash,
-
-      //   // userSports: [
-
-      //   //   {
-
-      //   //     sport,
-
-      //   //     level,
-
-      //   //   },
-
-      //   // ],
-
-      //   // token: uid2(32),
-
-      // });
 
       newUser.save().then(() => {
-        // console.log('User saved!');
+        console.log('User saved!');
       });
-
       res.json({ result: true });
     } else {
-      // User already exists in database
-
       res.json({ result: false, error: 'User already exists' });
     }
   });
