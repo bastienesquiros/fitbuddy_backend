@@ -6,4 +6,4 @@ export interface IEvent {
   totalPlayers: string;
   description: string;
   players: string;
-  }
+}

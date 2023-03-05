@@ -1,7 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import { IEvent } from './IEvent';
 
-
 const EventSchema: Schema = new Schema({
   author: { type: mongoose.Schema.Types.ObjectId, ref: 'users' },
   sport: { type: String },
