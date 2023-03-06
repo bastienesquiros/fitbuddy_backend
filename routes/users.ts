@@ -17,7 +17,9 @@ router.post('/signin', (req: Request, res: Response) => {
     if (user && bcrypt.compareSync(req.body.password, user.password)) {
       res.json({
         result: true,
+        token: user.token,
       });
+      // console.log('user.token');
     } else {
       res.json({ result: false, error: 'User not found or wrong password' });
     }
