@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-interface IEvent {
+export interface IEvent extends Document {
   author: string;
   sport: string;
   date: string;
@@ -20,4 +20,4 @@ const EventSchema: Schema = new Schema({
   players: [{ type: mongoose.Schema.Types.ObjectId, ref: 'users' }],
 });
 
-export default mongoose.model<IEvent>('events', EventSchema);
+export default mongoose.model<IEvent>('Event', EventSchema);

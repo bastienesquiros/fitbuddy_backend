@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express';
 import checkBody from '../modules/checkBody';
-import User from '../models/User/User';
 import bcrypt from 'bcrypt';
 import uid2 from 'uid2';
+import User, { IUser } from '../models/User/User';
 
 const router = express.Router();
 
@@ -13,8 +13,8 @@ router.post('/signin', (req: Request, res: Response) => {
       .status(400)
       .json({ result: false, error: 'Missing or empty fields' });
   }
-  User.findOne({ email: req.body.email }).then((data: IUser | null) => {
-    if (data && bcrypt.compareSync(req.body.password, data.password)) {
+  User.findOne({ email: req.body.email }).then((user: IUser | null) => {
+    if (user && bcrypt.compareSync(req.body.password, user.password)) {
       res.json({
         result: true,
       });
@@ -45,8 +45,8 @@ router.post('/signup', (req: Request, res: Response) => {
     return;
   }
   // Check if the user has not already been registered
-  User.findOne({ email: req.body.email }).then((data: IUser | null) => {
-    if (data === null) {
+  User.findOne({ email: req.body.email }).then((user: IUser | null) => {
+    if (user === null) {
       const hash = bcrypt.hashSync(req.body.password, 10);
       const newUser = new User({
         firstName: req.body.firstName,
@@ -59,6 +59,8 @@ router.post('/signup', (req: Request, res: Response) => {
         password: hash,
         token: uid2(32),
         inscriptionDate: req.body.inscriptionDate,
+        bookmarks: req.body.bookmarks,
+        myEvents: req.body.myEvents,
         sports: req.body.sports,
       });
       newUser.save().then(() => {
