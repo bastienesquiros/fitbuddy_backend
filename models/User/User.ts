@@ -1,5 +1,18 @@
 import { Schema, model } from 'mongoose';
-import { IUser } from './IUser';
+
+interface IUser {
+  firstName: string;
+  lastName: string;
+  pseudo: string;
+  birthday: Date;
+  gender: string;
+  bio: string;
+  email: string;
+  password: string;
+  token: string;
+  inscriptionDate: Date;
+  sports: [string];
+}
 
 const UserSchema: Schema = new Schema<IUser>({
   firstName: { type: String },

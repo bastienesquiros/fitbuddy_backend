@@ -1,7 +1,6 @@
 import express, { Request, Response } from 'express';
 import checkBody from '../modules/checkBody';
-import User from '../models/User/users';
-import { IUser } from '../models/User/IUser';
+import User from '../models/User/User';
 import bcrypt from 'bcrypt';
 import uid2 from 'uid2';
 

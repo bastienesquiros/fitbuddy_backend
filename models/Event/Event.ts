@@ -1,5 +1,14 @@
 import mongoose, { Schema } from 'mongoose';
-import { IEvent } from './IEvent';
+
+interface IEvent {
+  author: string;
+  sport: string;
+  date: string;
+  address: string;
+  totalPlayers: string;
+  description: string;
+  players: string;
+}
 
 const EventSchema: Schema = new Schema({
   author: { type: mongoose.Schema.Types.ObjectId, ref: 'users' },

@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import checkBody from '../modules/checkBody';
-import Event from '../models/Event/events';
+import Event from '../models/Event/Event';
 
 const router = express.Router();
 
