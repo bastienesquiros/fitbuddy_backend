@@ -1,6 +1,7 @@
 import mongoose, { Schema, model } from 'mongoose';
 
 export interface IUser extends Document {
+  _id: string;
   firstName: string;
   lastName: string;
   pseudo: string;
@@ -11,8 +12,8 @@ export interface IUser extends Document {
   password: string;
   token: string;
   inscriptionDate: Date;
-  bookmarks : [string],
-  myEvents : [string],
+  bookmarks: [string];
+  myEvents: [string];
   sports: [string];
 }
 
@@ -27,8 +28,8 @@ const UserSchema: Schema = new Schema<IUser>({
   password: { type: String },
   token: { type: String },
   inscriptionDate: { type: Date },
-  bookmarks : { type: [String] },
-  myEvents : { type: [String] },
+  bookmarks: { type: [String] },
+  myEvents: { type: [String] },
   sports: { type: [String] },
 });
 

@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import checkBody from '../modules/checkBody';
 import Event from '../models/Event/Event';
+import User, { IUser } from '../models/User/User';
 
 const router = express.Router();
 
@@ -18,16 +19,27 @@ router.post('/add', (req: Request, res: Response) => {
     res.json({ result: false, error: 'Missing or empty fields' });
     return;
   } else {
-    const { sport, date, address, totalPlayers, description } = req.body;
+    //const { token, sport, date, address, totalPlayers, description } = req.body;
 
-    Event.create({
-      sport,
-      date,
-      address,
-      totalPlayers,
-      description,
+    User.findOne({ token: req.body.token }).then((user: IUser | null) => {
+      if (!user) {
+        res.json({ result: false });
+      } else {
+        const authorData = user._id;
+        res.json({ result: true });
+        const newEvent = new Event({
+          author: authorData,
+          sport: req.body.sport,
+          date: req.body.date,
+          address: req.body.address,
+          totalPlayers: req.body.totalPlayers,
+          description: req.body.description,
+        });
+        newEvent.save().then(() => {
+          console.log('Event saved!');
+        });
+      }
     });
-    res.json({ result: true });
   }
 });
 
