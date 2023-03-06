@@ -32,7 +32,7 @@ router.post('/add', (req: Request, res: Response) => {
 });
 
 router.get('/', (req: Request, res: Response) => {
-  Event.find({}).then((eventsData) => {
+  Event.find().then((eventsData) => {
     res.json({ result: true, events: eventsData });
   });
 });
