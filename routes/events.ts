@@ -19,8 +19,6 @@ router.post('/add', (req: Request, res: Response) => {
     res.json({ result: false, error: 'Missing or empty fields' });
     return;
   } else {
-    //const { token, sport, date, address, totalPlayers, description } = req.body;
-
     User.findOne({ token: req.body.token }).then((user: IUser | null) => {
       if (!user) {
         res.json({ result: false });
@@ -44,9 +42,11 @@ router.post('/add', (req: Request, res: Response) => {
 });
 
 router.get('/', (req: Request, res: Response) => {
-  Event.find().then((eventsData) => {
-    res.json({ result: true, events: eventsData });
-  });
+  Event.find()
+    .populate('author')
+    .then((eventsData) => {
+      res.json({ result: true, events: eventsData });
+    });
 });
 
 module.exports = router;

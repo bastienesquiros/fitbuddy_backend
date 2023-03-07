@@ -19,7 +19,6 @@ router.post('/signin', (req: Request, res: Response) => {
         result: true,
         token: user.token,
       });
-      // console.log('user.token');
     } else {
       res.json({ result: false, error: 'User not found or wrong password' });
     }
@@ -28,7 +27,6 @@ router.post('/signin', (req: Request, res: Response) => {
 
 //Route to Sign Up
 router.post('/signup', (req: Request, res: Response) => {
-  // console.log(req.body);
   if (
     !checkBody(req.body, [
       'firstName',
@@ -66,9 +64,9 @@ router.post('/signup', (req: Request, res: Response) => {
         sports: req.body.sports,
       });
       newUser.save().then(() => {
-        // console.log('User saved!');
+        console.log('User saved!');
       });
-      res.json({ result: true });
+      res.json({ result: true, token: newUser.token });
     } else {
       res.json({ result: false, error: 'User already exists' });
     }
