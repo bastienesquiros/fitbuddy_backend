@@ -58,9 +58,11 @@ router.post('/forme', (req: Request, res: Response) => {
           userSports.includes(sport)
         );
 
-        Event.find({ sport: matchingSports }).then((matchingData) => {
-          res.json({ events: matchingData });
-        });
+        Event.find({ sport: matchingSports })
+          .populate('author')
+          .then((matchingData) => {
+            res.json({ events: matchingData });
+          });
       });
     }
   });
@@ -73,7 +75,8 @@ router.post('/discover', (req: Request, res: Response) => {
       for (let i: number = 0; i < userData.sports.length; i++) {
         userSports.push(userData.sports[i]);
       }
-      Event.find({}).then((eventData: any) => {
+      Event.find({})
+      .then((eventData: any) => {
         let eventSports: string[] = [];
         for (let i: number = 0; i < eventData.length; i++) {
           eventSports.push(eventData[i].sport);
@@ -83,9 +86,11 @@ router.post('/discover', (req: Request, res: Response) => {
           (sport) => !userSports.includes(sport)
         );
 
-        Event.find({ sport: matchingSports }).then((matchingData) => {
-          res.json({ events: matchingData });
-        });
+        Event.find({ sport: matchingSports })
+          .populate('author')
+          .then((matchingData) => {
+            res.json({ events: matchingData });
+          });
       });
     }
   });
