@@ -43,31 +43,52 @@ router.post('/add', (req: Request, res: Response) => {
 
 router.post('/forme', (req: Request, res: Response) => {
   User.findOne({ token: req.body.token }).then((userData: IUser | null) => {
-    let userSports: string;
+    let userSports: string[] = [];
     if (userData !== null) {
       for (let i: number = 0; i < userData.sports.length; i++) {
-        userSports = userData.sports[i];
-        // console.log('userSports:', userSports);
+        userSports.push(userData.sports[i]);
       }
-      Event.find().then((eventData: any) => {
+      Event.find({}).then((eventData: any) => {
         let eventSports: string[] = [];
         for (let i: number = 0; i < eventData.length; i++) {
           eventSports.push(eventData[i].sport);
-          // console.log('eventSports:', eventSports);
         }
-        if (!eventSports.includes(userSports)) {
-          console.log('prout:', userSports);
-        }
+
+        const matchingSports = eventSports.filter((sport) =>
+          userSports.includes(sport)
+        );
+
+        Event.find({ sport: matchingSports }).then((matchingData) => {
+          res.json({ events: matchingData });
+        });
       });
     }
   });
+});
 
-  // Event.find()
+router.post('/discover', (req: Request, res: Response) => {
+  User.findOne({ token: req.body.token }).then((userData: IUser | null) => {
+    let userSports: string[] = [];
+    if (userData !== null) {
+      for (let i: number = 0; i < userData.sports.length; i++) {
+        userSports.push(userData.sports[i]);
+      }
+      Event.find({}).then((eventData: any) => {
+        let eventSports: string[] = [];
+        for (let i: number = 0; i < eventData.length; i++) {
+          eventSports.push(eventData[i].sport);
+        }
 
-  // .populate('author')
-  // .then((eventsData) => {
-  //   res.json({ result: true, events: eventsData });
-  // });
+        const matchingSports = eventSports.filter(
+          (sport) => !userSports.includes(sport)
+        );
+
+        Event.find({ sport: matchingSports }).then((matchingData) => {
+          res.json({ events: matchingData });
+        });
+      });
+    }
+  });
 });
 
 module.exports = router;
