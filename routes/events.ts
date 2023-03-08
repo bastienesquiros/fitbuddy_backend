@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import checkBody from '../modules/checkBody';
-import Event from '../models/Event/Event';
+import Event, { IEvent } from '../models/Event/Event';
 import User, { IUser } from '../models/User/User';
 
 const router = express.Router();
@@ -41,12 +41,33 @@ router.post('/add', (req: Request, res: Response) => {
   }
 });
 
-router.get('/', (req: Request, res: Response) => {
-  Event.find()
-    .populate('author')
-    .then((eventsData) => {
-      res.json({ result: true, events: eventsData });
-    });
+router.post('/forme', (req: Request, res: Response) => {
+  User.findOne({ token: req.body.token }).then((userData: IUser | null) => {
+    let userSports: string;
+    if (userData !== null) {
+      for (let i: number = 0; i < userData.sports.length; i++) {
+        userSports = userData.sports[i];
+        // console.log('userSports:', userSports);
+      }
+      Event.find().then((eventData: any) => {
+        let eventSports: string[] = [];
+        for (let i: number = 0; i < eventData.length; i++) {
+          eventSports.push(eventData[i].sport);
+          // console.log('eventSports:', eventSports);
+        }
+        if (!eventSports.includes(userSports)) {
+          console.log('prout:', userSports);
+        }
+      });
+    }
+  });
+
+  // Event.find()
+
+  // .populate('author')
+  // .then((eventsData) => {
+  //   res.json({ result: true, events: eventsData });
+  // });
 });
 
 module.exports = router;
