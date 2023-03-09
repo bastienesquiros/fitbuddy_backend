@@ -8,9 +8,9 @@
   },
   "private": "true",
   "scripts": {
-    "start": "npx tsc && node dist/app.js",
+    "start": "npx tsc && nodemon dist/app.js",
     "build": "npx tsc",
-    "dev": "concurrently \"npx tsc --watch\" \"node -q dist/app.js\" "
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/app.js\" "
   },
   "keywords": [
     "create-express-app",
@@ -34,7 +34,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.17.17",
     "mongoose": "^7.0.0",
-    "nodemon": "^2.0.20",
+    "nodemon": "^2.0.21",
     "path": "^0.12.7",
     "punycode": "2.3.0",
     "typescript": "^4.8.4",

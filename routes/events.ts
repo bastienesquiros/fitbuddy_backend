@@ -75,8 +75,7 @@ router.post('/discover', (req: Request, res: Response) => {
       for (let i: number = 0; i < userData.sports.length; i++) {
         userSports.push(userData.sports[i]);
       }
-      Event.find({})
-      .then((eventData: any) => {
+      Event.find({}).then((eventData: any) => {
         let eventSports: string[] = [];
         for (let i: number = 0; i < eventData.length; i++) {
           eventSports.push(eventData[i].sport);

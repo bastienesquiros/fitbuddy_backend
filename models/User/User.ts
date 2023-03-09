@@ -28,9 +28,9 @@ const UserSchema: Schema = new Schema<IUser>({
   password: { type: String },
   token: { type: String },
   inscriptionDate: { type: Date },
-  bookmarks: { type: [String] },
+  bookmarks: [{ type: mongoose.Schema.Types.ObjectId, ref: 'events' }],
   myEvents: { type: [String] },
   sports: { type: [String] },
 });
 
-export default mongoose.model<IUser>('User', UserSchema);
+export default mongoose.model<IUser>('users', UserSchema);
