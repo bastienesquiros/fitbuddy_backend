@@ -118,4 +118,48 @@ router.post('/bookmarks', (req: Request, res: Response) => {
     });
 });
 
+router.post('/addevent', (req: Request, res: Response) => {
+  Event.findOne({ _id: req.body.id }).then((eventData: any) => {
+    if (eventData !== null) {
+      User.updateOne(
+        { token: req.body.token },
+        { $push: { myEvents: eventData._id } }
+      ).then(() => {
+        res.json({ result: true, log: 'Event Added' });
+        console.log('add event');
+      });
+    }
+  });
+});
+
+router.delete('/removeevent', (req: Request, res: Response) => {
+  Event.findOne({ _id: req.body.id }).then((eventData: any) => {
+    if (eventData !== null) {
+      User.updateOne(
+        { token: req.body.token },
+        { $pull: { myEvents: eventData._id } }
+      ).then(() => {
+        res.json({ result: true, log: 'Event Deleted' });
+        console.log('remove event');
+      });
+    }
+  });
+});
+
+router.post('/myevents', (req: Request, res: Response) => {
+  User.findOne({ token: req.body.token })
+    .populate('myEvents')
+    .then((userData: any) => {
+      if (userData !== null) {
+        if (userData.myEvents[0]) {
+          res.json({ result: true, events: userData.myEvents });
+        } else {
+          res.json({ result: false });
+        }
+      } else {
+        res.json({ result: false });
+      }
+    });
+});
+
 module.exports = router;

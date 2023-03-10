@@ -29,7 +29,7 @@ const UserSchema: Schema = new Schema<IUser>({
   token: { type: String },
   inscriptionDate: { type: Date },
   bookmarks: [{ type: mongoose.Schema.Types.ObjectId, ref: 'events' }],
-  myEvents: { type: [String] },
+  myEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: 'events' }],
   sports: { type: [String] },
 });
 
