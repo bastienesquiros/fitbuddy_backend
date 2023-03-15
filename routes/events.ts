@@ -33,7 +33,8 @@ router.post('/add', (req: Request, res: Response) => {
           totalPlayers: req.body.totalPlayers,
           description: req.body.description,
         });
-        newEvent.save().then(() => {
+        newEvent.save().then((data) => {
+          console.log(data._id)
           console.log('Event saved!');
         });
       }
