@@ -6,6 +6,8 @@ dotenv.config(); // Loads .env
 
 const connectionString = process.env.MONGODB_URI;
 
+console.log(process.env.MONGODB_URI);
+
 if (connectionString) {
   mongoose
     .connect(connectionString, { connectTimeoutMS: 2000 })
