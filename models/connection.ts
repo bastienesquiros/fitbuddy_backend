@@ -4,8 +4,7 @@ import dotenv from 'dotenv'; // Import to read the .env in TS
 
 dotenv.config(); // Loads .env
 
-const connectionString =
-  'mongodb+srv://fitbuddy:fitbuddycapsule@fitbuddy.pw2syxi.mongodb.net/fitbuddy';
+const connectionString = process.env.MONGODB_URI;
 
 if (connectionString) {
   mongoose
